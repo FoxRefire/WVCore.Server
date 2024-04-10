@@ -58,7 +58,7 @@ jobs:
         tag_name: ${{ github.run_id }}-${{ github.run_attempt }}
         release_name: ${{ github.run_id }}-${{ github.run_attempt }}
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./bin/Release/net7.0/win-x64/publish/*
+        asset_path: /home/runner/work/WVCore.Server/WVCore.Server/WVCore.Server/bin/Release/net7.0/win-x64/publish/*
         asset_name: WVCore.Server-win-x64.zip
         asset_content_type: application/zip
 
@@ -70,7 +70,7 @@ jobs:
         tag_name: ${{ github.run_id }}-${{ github.run_attempt }}
         release_name: ${{ github.run_id }}-${{ github.run_attempt }}
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./bin/Release/net7.0/win-x86/publish/*
+        asset_path: /home/runner/work/WVCore.Server/WVCore.Server/WVCore.Server/bin/Release/net7.0/win-x86/publish/*
         asset_name: WVCore.Server-win-x86.zip
         asset_content_type: application/zip
 
@@ -82,7 +82,7 @@ jobs:
         tag_name: ${{ github.run_id }}-${{ github.run_attempt }}
         release_name: ${{ github.run_id }}-${{ github.run_attempt }}
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./bin/Release/net7.0/win-arm64/publish/*
+        asset_path: /home/runner/work/WVCore.Server/WVCore.Server/WVCore.Server/bin/Release/net7.0/win-arm64/publish/*
         asset_name: WVCore.Server-win-arm64.zip
         asset_content_type: application/zip
 
@@ -94,7 +94,7 @@ jobs:
         tag_name: ${{ github.run_id }}-${{ github.run_attempt }}
         release_name: ${{ github.run_id }}-${{ github.run_attempt }}
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./bin/Release/net7.0/linux-x64/publish/*
+        asset_path: /home/runner/work/WVCore.Server/WVCore.Server/WVCore.Server/bin/Release/net7.0/linux-x64/publish/*
         asset_name: WVCore.Server-linux-x64.zip
         asset_content_type: application/zip
 
@@ -106,7 +106,7 @@ jobs:
         tag_name: ${{ github.run_id }}-${{ github.run_attempt }}
         release_name: ${{ github.run_id }}-${{ github.run_attempt }}
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./bin/Release/net7.0/linux-musl-x64/publish/*
+        asset_path: /home/runner/work/WVCore.Server/WVCore.Server/WVCore.Server/bin/Release/net7.0/linux-musl-x64/publish/*
         asset_name: WVCore.Server-linux-musl-x64.zip
         asset_content_type: application/zip
 
@@ -118,7 +118,7 @@ jobs:
         tag_name: ${{ github.run_id }}-${{ github.run_attempt }}
         release_name: ${{ github.run_id }}-${{ github.run_attempt }}
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./bin/Release/net7.0/linux-musl-arm64/publish/*
+        asset_path: /home/runner/work/WVCore.Server/WVCore.Server/WVCore.Server/bin/Release/net7.0/linux-musl-arm64/publish/*
         asset_name: WVCore.Server-linux-musl-arm64.zip
         asset_content_type: application/zip
 
@@ -130,7 +130,7 @@ jobs:
         tag_name: ${{ github.run_id }}-${{ github.run_attempt }}
         release_name: ${{ github.run_id }}-${{ github.run_attempt }}
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./bin/Release/net7.0/linux-arm/publish/*
+        asset_path: /home/runner/work/WVCore.Server/WVCore.Server/WVCore.Server/bin/Release/net7.0/linux-arm/publish/*
         asset_name: WVCore.Server-linux-arm.zip
         asset_content_type: application/zip
 
@@ -142,7 +142,7 @@ jobs:
         tag_name: ${{ github.run_id }}-${{ github.run_attempt }}
         release_name: ${{ github.run_id }}-${{ github.run_attempt }}
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./bin/Release/net7.0/linux-arm64/publish/*
+        asset_path: /home/runner/work/WVCore.Server/WVCore.Server/WVCore.Server/bin/Release/net7.0/linux-arm64/publish/*
         asset_name: WVCore.Server-linux-arm64.zip
         asset_content_type: application/zip
 
@@ -154,7 +154,7 @@ jobs:
         tag_name: ${{ github.run_id }}-${{ github.run_attempt }}
         release_name: ${{ github.run_id }}-${{ github.run_attempt }}
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./bin/Release/net7.0/linux-bionic-arm64/publish/*
+        asset_path: /home/runner/work/WVCore.Server/WVCore.Server/WVCore.Server/bin/Release/net7.0/linux-bionic-arm64/publish/*
         asset_name: WVCore.Server-linux-bionic-arm64.zip
         asset_content_type: application/zip
 
@@ -166,7 +166,7 @@ jobs:
         tag_name: ${{ github.run_id }}-${{ github.run_attempt }}
         release_name: ${{ github.run_id }}-${{ github.run_attempt }}
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./bin/Release/net7.0/osx-x64/publish/*
+        asset_path: /home/runner/work/WVCore.Server/WVCore.Server/WVCore.Server/bin/Release/net7.0/osx-x64/publish/*
         asset_name: WVCore.Server-osx-x64.zip
         asset_content_type: application/zip
 
@@ -178,8 +178,9 @@ jobs:
         tag_name: ${{ github.run_id }}-${{ github.run_attempt }}
         release_name: ${{ github.run_id }}-${{ github.run_attempt }}
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./bin/Release/net7.0/osx-arm64/publish/*
+        asset_path: /home/runner/work/WVCore.Server/WVCore.Server/WVCore.Server/bin/Release/net7.0/osx-arm64/publish/*
         asset_name: WVCore.Server-osx-arm64.zip
         asset_content_type: application/zip
+
 
 
