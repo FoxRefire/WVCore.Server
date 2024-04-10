@@ -9,10 +9,10 @@ jobs:
  build:
     runs-on: ubuntu-latest
 
+    env:
+     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     steps:
-    
-    - name: Checkout code
-      uses: actions/checkout@v2
     
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
@@ -27,7 +27,6 @@ jobs:
 
     - name: Build WVCore.Server
       run: |
-        rm -rf *
         cd WVCore.Server
         rm Directory.Build.props
         dotnet publish -r win-x64 -c Release
@@ -44,146 +43,6 @@ jobs:
         readlink -f ./
 
     - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.run_id }}-${{ github.run_attempt }}
-        release_name: ${{ github.run_id }}-${{ github.run_attempt }}
-        draft: false
-        prerelease: false
-
-    - name: Release win-x64
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.run_id }}-${{ github.run_attempt }}
-        release_name: ${{ github.run_id }}-${{ github.run_attempt }}
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./bin/Release/net7.0/win-x64/publish/*
-        asset_name: WVCore.Server-win-x64.zip
-        asset_content_type: application/zip
-
-    - name: Release win-x86
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.run_id }}-${{ github.run_attempt }}
-        release_name: ${{ github.run_id }}-${{ github.run_attempt }}
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./bin/Release/net7.0/win-x86/publish/*
-        asset_name: WVCore.Server-win-x86.zip
-        asset_content_type: application/zip
-
-    - name: Release win-arm64
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.run_id }}-${{ github.run_attempt }}
-        release_name: ${{ github.run_id }}-${{ github.run_attempt }}
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./bin/Release/net7.0/win-arm64/publish/*
-        asset_name: WVCore.Server-win-arm64.zip
-        asset_content_type: application/zip
-
-    - name: Release linux-x64
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.run_id }}-${{ github.run_attempt }}
-        release_name: ${{ github.run_id }}-${{ github.run_attempt }}
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./bin/Release/net7.0/linux-x64/publish/*
-        asset_name: WVCore.Server-linux-x64.zip
-        asset_content_type: application/zip
-
-    - name: Release linux-musl-x64
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.run_id }}-${{ github.run_attempt }}
-        release_name: ${{ github.run_id }}-${{ github.run_attempt }}
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./bin/Release/net7.0/linux-musl-x64/publish/*
-        asset_name: WVCore.Server-linux-musl-x64.zip
-        asset_content_type: application/zip
-
-    - name: Release linux-musl-arm64
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.run_id }}-${{ github.run_attempt }}
-        release_name: ${{ github.run_id }}-${{ github.run_attempt }}
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./bin/Release/net7.0/linux-musl-arm64/publish/*
-        asset_name: WVCore.Server-linux-musl-arm64.zip
-        asset_content_type: application/zip
-
-    - name: Release linux-arm
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.run_id }}-${{ github.run_attempt }}
-        release_name: ${{ github.run_id }}-${{ github.run_attempt }}
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./bin/Release/net7.0/linux-arm/publish/*
-        asset_name: WVCore.Server-linux-arm.zip
-        asset_content_type: application/zip
-
-    - name: Release linux-arm64
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.run_id }}-${{ github.run_attempt }}
-        release_name: ${{ github.run_id }}-${{ github.run_attempt }}
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./bin/Release/net7.0/linux-arm64/publish/*
-        asset_name: WVCore.Server-linux-arm64.zip
-        asset_content_type: application/zip
-
-    - name: Release linux-bionic-arm64
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.run_id }}-${{ github.run_attempt }}
-        release_name: ${{ github.run_id }}-${{ github.run_attempt }}
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./bin/Release/net7.0/linux-bionic-arm64/publish/*
-        asset_name: WVCore.Server-linux-bionic-arm64.zip
-        asset_content_type: application/zip
-
-    - name: Release osx-x64
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.run_id }}-${{ github.run_attempt }}
-        release_name: ${{ github.run_id }}-${{ github.run_attempt }}
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./bin/Release/net7.0/osx-x64/publish/*
-        asset_name: WVCore.Server-osx-x64.zip
-        asset_content_type: application/zip
-
-    - name: Release osx-arm64
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.run_id }}-${{ github.run_attempt }}
-        release_name: ${{ github.run_id }}-${{ github.run_attempt }}
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./bin/Release/net7.0/osx-arm64/publish/*
-        asset_name: WVCore.Server-osx-arm64.zip
-        asset_content_type: application/zip
-
+      run: |
+       gh release create ${{ github.run_id }} -R FoxRefire/WVCore.Server
 
