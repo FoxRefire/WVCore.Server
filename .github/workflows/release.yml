@@ -27,6 +27,7 @@ jobs:
 
     - name: Build WVCore.Server
       run: |
+        rm -rf *
         cd WVCore.Server
         rm Directory.Build.props
         dotnet publish -r win-x64 -c Release
