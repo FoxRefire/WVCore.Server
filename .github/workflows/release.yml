@@ -48,6 +48,8 @@ jobs:
 
     - name: Upload Release
       run: |
+        ls -R
+        echo ==DEBUG==
         zip ./bin/Release/net7.0/win-x64/publish/WVCore.Server-win-x64.zip ./bin/Release/net7.0/win-x64/publish/*
         gh release upload ${{ github.run_id }} ./bin/Release/net7.0/win-x64/publish/WVCore.Server-win-x64.zip -R FoxRefire/WVCore.Server
 
