@@ -37,7 +37,7 @@ jobs:
         dotnet publish -r linux-bionic-arm64 -c Release
         dotnet publish -r osx-x64 -c Release
         dotnet publish -r osx-arm64 -c Release
-        ls -R
+        readlink -f ./
 
     - name: Create Release
       id: create_release
