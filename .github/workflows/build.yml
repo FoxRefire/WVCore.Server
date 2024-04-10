@@ -1,0 +1,73 @@
+name: Build and Release
+
+on:
+ push:
+    branches:
+      - main
+
+jobs:
+ build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '8.x'
+
+    - name: Clone WVCore
+      run: git clone https://github.com/nilaoda/WVCore
+
+    - name: Clone WVCore.Server
+      run: git clone https://github.com/nilaoda/WVCore.Server
+
+    - name: Build WVCore.Server
+      run: |
+        cd WVCore.Server
+        dotnet publish -r win-x64 -c Release
+        dotnet publish -r win-x86 -c Release
+        dotnet publish -r win-arm64 -c Release
+        dotnet publish -r linux-x64 -c Release
+        dotnet publish -r linux-musl-x64 -c Release
+        dotnet publish -r linux-musl-arm64 -c Release
+        dotnet publish -r linux-arm -c Release
+        dotnet publish -r linux-arm64 -c Release
+        dotnet publish -r linux-bionic-arm64 -c Release
+        dotnet publish -r osx-x64 -c Release
+        dotnet publish -r osx-arm64 -c Release
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./WVCore.Server/bin/Release/net8.0/win-x64/publish/*
+        asset_name: WVCore.Server-win-x64.zip
+        asset_content_type: application/zip
+
+    # 他のプラットフォームに対するアップロードステップを追加してください。
+    # 例:
+    # - name: Upload Release Asset for Linux x64
+    #   uses: actions/upload-release-asset@v1
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #   with:
+    #     upload_url: ${{ steps.create_release.outputs.upload_url }}
+    #     asset_path: ./WVCore.Server/bin/Release/net8.0/linux-x64/publish/*
+    #     asset_name: WVCore.Server-linux-x64.zip
+    #     asset_content_type: application/zip
