@@ -54,6 +54,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
+        tag_name: ${{ github.run_id }}-${{ github.run_attempt }}
+        release_name: ${{ github.run_id }}-${{ github.run_attempt }}
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./WVCore.Server/bin/Release/net8.0/win-x64/publish/*
         asset_name: WVCore.Server-win-x64.zip
